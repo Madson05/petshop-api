@@ -39,7 +39,19 @@ const getProprietario = async (id) => {
   try{
     
     const res = await conn.query("SELECT * FROM proprietarios where proprietario_id = $1", [id]);
-    return res.rows;
+    return res.rows[0];
+  }catch(error){
+    throw error
+  }finally{
+    conn.release();
+  }
+}
+
+const checkId = async (id) => {
+  const conn = await connect();
+  try{
+    const res = await conn.query("SELECT proprietario_id FROM proprietarios where proprietario_id = $1", [id]);
+    if(!res.rows[0])throw new Error("propritario_id inválido");
   }catch(error){
     throw error
   }finally{
@@ -74,5 +86,6 @@ export default {
   getProprietarios,
   getProprietario,
   deleteProprietario,
-  updateProprietario
+  updateProprietario,
+  checkId
 }

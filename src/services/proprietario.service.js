@@ -6,6 +6,7 @@ const getProprietarios = async () => {
   return await proprietarioRepository.getProprietarios()
 }
 const getProprietario = async (id) => {
+  await proprietarioRepository.checkId(id)
   return await proprietarioRepository.getProprietario(id)
 }
 
