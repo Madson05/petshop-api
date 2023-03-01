@@ -5,8 +5,12 @@ const createProprietario = async (proprietario) => {
 const getProprietarios = async () => {
   return await proprietarioRepository.getProprietarios()
 }
+const getProprietario = async (id) => {
+  return await proprietarioRepository.getProprietario(id)
+}
 
 export default {
   createProprietario,
   getProprietarios,
+  getProprietario
 }

@@ -37,7 +37,9 @@ const getProprietarios = async () => {
 const getProprietario = async (id) => {
   const conn = await connect();
   try{
-
+    
+    const res = await conn.query("SELECT * FROM proprietarios where proprietario_id = $1", [id]);
+    return res.rows;
   }catch(error){
     throw error
   }finally{

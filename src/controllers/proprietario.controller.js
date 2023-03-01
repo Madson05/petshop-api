@@ -25,7 +25,17 @@ const getProprietarios = async (req, res, next) => {
   }
 }
 
+const getProprietario = async (req, res, next) => {
+  try{
+    const id = req.params.id
+    res.send(await proprietarioService.getProprietario(id))
+  }catch(error){
+    next(error)
+  }
+}
+
 export default {
   createProprietario,
-  getProprietarios
+  getProprietarios,
+  getProprietario
 }
