@@ -17,6 +17,15 @@ const createProprietario = async (req, res, next) => {
   }
 }
 
+const getProprietarios = async (req, res, next) => {
+  try{
+    res.send(await proprietarioService.getProprietarios())
+  }catch(error){
+    next(error)
+  }
+}
+
 export default {
-  createProprietario
+  createProprietario,
+  getProprietarios
 }

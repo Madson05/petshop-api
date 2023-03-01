@@ -20,6 +20,57 @@ const createProprietario = async (proprietario) => {
   }
 }
 
+const getProprietarios = async () => {
+  const conn = await connect();
+  try{
+    const sql = "SELECT * FROM proprietarios"
+    const res = await conn.query(sql);
+    return res.rows;
+
+  }catch(error){
+    throw error
+  }finally{
+    conn.release();
+  }
+}
+
+const getProprietario = async (id) => {
+  const conn = await connect();
+  try{
+
+  }catch(error){
+    throw error
+  }finally{
+    conn.release();
+  }
+}
+
+const updateProprietario = async (proprietario) => {
+  const conn = await connect();
+  try{
+
+  }catch(error){
+    throw error
+  }finally{
+    conn.release();
+  }
+}
+
+const deleteProprietario = async (id) => {
+  const conn = await connect();
+  try{
+
+  }catch(error){
+    throw error
+  }finally{
+    conn.release();
+  }
+}
+
 export default {
   createProprietario,
+  getProprietarios,
+  getProprietario,
+  deleteProprietario,
+  updateProprietario
 }
