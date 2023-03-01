@@ -1,5 +1,7 @@
 import express from "express";
-import winston from "winston"
+import winston from "winston";
+import animalsRouter from "./routes/animal.route.js"
+import proprietariosRouter from "./routes/proprietario.route.js"
 
 const { combine, timestamp, label, printf } = winston.format;
 const myFormat = printf(({ level, message, label, timestamp }) => {
@@ -20,6 +22,12 @@ const port = 3000;
 const app = express();
 
 app.use(express.json());
+app.use("/proprietario", proprietariosRouter);
+app.use("/animal", animalsRouter);
+app.use((error, req, res, next) => {
+  global.logger.error(`${req.method} ${req.baseUrl} ${error.message}`);
+  res.status(400).send({ error: error.message });
+});
 
 
 app.listen(port, () => global.logger.info(`API started on port ${port}`));
