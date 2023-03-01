@@ -10,8 +10,14 @@ const getProprietario = async (id) => {
   return await proprietarioRepository.getProprietario(id)
 }
 
+const updateProprietario = async (proprietario) => {
+  await proprietarioRepository.checkId(proprietario.proprietario_id)
+  return await proprietarioRepository.updateProprietario(proprietario)
+}
+
 export default {
   createProprietario,
   getProprietarios,
-  getProprietario
+  getProprietario,
+  updateProprietario
 }

@@ -62,7 +62,15 @@ const checkId = async (id) => {
 const updateProprietario = async (proprietario) => {
   const conn = await connect();
   try{
-
+    const sql =
+      "UPDATE proprietarios SET nome = $1, telefone = $2 WHERE proprietario_id = $3 RETURNING *";
+    const values = [
+      proprietario.nome,
+      proprietario.telefone,
+      proprietario.proprietario_id
+    ];
+    const res = await conn.query(sql, values)
+    return res.rows[0];
   }catch(error){
     throw error
   }finally{

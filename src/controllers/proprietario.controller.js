@@ -34,8 +34,26 @@ const getProprietario = async (req, res, next) => {
   }
 }
 
+const updateProprietario = async (req, res, next) => {
+  try{
+    const proprietario = req.body;
+
+    let validateString = "";
+    if(!proprietario.proprietario_id) validateString += "proprietario_id, "
+    if(!proprietario.nome) validateString += "nome, ";
+    if(!proprietario.telefone) validateString += "telefone, ";
+    if(validateString) throw new Error(`O(s) campo(s) ${validateString} tem preenchimento obrigatório.`)
+    res.send(await proprietarioService.updateProprietario(proprietario))
+    global.logger.info(`updated proprietario - ${proprietario.proprietario_id}` )
+
+  }catch(error){
+    next(error)
+  }
+}
+
 export default {
   createProprietario,
   getProprietarios,
-  getProprietario
+  getProprietario,
+  updateProprietario
 }
