@@ -43,7 +43,6 @@ const updateAnimal = async (req, res, next) => {
     if(!animal.animal_id) validateString += "animal_id, "
     if(!animal.nome) validateString += "nome, ";
     if(!animal.tipo) validateString += "tipo, ";
-    if(!animal.proprietario_id) validateString += "proprietario_id, ";
     if(validateString) throw new Error(`O(s) campo(s) ${validateString} tem preenchimento obrigatório.`)
     res.send(await animalService.updateAnimal(animal))
     global.logger.info(`updated animal - ${animal.animal_id}` )
