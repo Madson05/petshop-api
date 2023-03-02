@@ -35,6 +35,19 @@ const getAnimals = async () => {
   }
 }
 
+const getAnimalsByProp = async (id) => {
+  const conn = await connect();
+  try{
+    const res = await conn.query("SELECT * FROM animais WHERE proprietario_id = $1", [id])
+    return res.rows;
+
+  }catch(error){
+    throw error
+  }finally{
+    conn.release();
+  }
+}
+
 const getAnimal = async (id) => {
   const conn = await connect();
   try{
@@ -94,6 +107,7 @@ const deleteAnimal = async (id) => {
 export default {
   createAnimal,
   getAnimals,
+  getAnimalsByProp,
   getAnimal,
   deleteAnimal,
   updateAnimal,

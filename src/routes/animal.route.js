@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post("/", animalController.createAnimal);
 router.get("/", animalController.getAnimals);
+router.get("/:proprietario_id", animalController.getAnimalsByProp);
 router.get("/:id", animalController.getAnimal);
 router.put("/", animalController.updateAnimal);
 router.delete("/:id", animalController.deleteAnimal);

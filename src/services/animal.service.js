@@ -7,6 +7,11 @@ const createAnimal = async (animal) => {
 const getAnimals = async () => {
   return await animalRepository.getAnimals()
 }
+
+const getAnimalsByProp = async (id) => {
+  return await animalRepository.getAnimalsByProp(id)
+}
+
 const getAnimal = async (id) => {
   await animalRepository.checkId(id)
   return await animalRepository.getAnimal(id)
@@ -24,6 +29,7 @@ const deleteAnimal = async (id) => {
 export default {
   createAnimal,
   getAnimals,
+  getAnimalsByProp,
   getAnimal,
   updateAnimal,
   deleteAnimal
