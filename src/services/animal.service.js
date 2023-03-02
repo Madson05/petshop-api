@@ -1,5 +1,7 @@
 import animalRepository from "../repositories/animal.repository.js"
+import proprietarioRepository from "../repositories/proprietario.repository.js";
 const createAnimal = async (animal) => {
+  await proprietarioRepository.checkId(animal.proprietario_id);
   return await animalRepository.createAnimal(animal);
 }
 const getAnimals = async () => {
