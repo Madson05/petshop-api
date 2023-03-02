@@ -4,7 +4,7 @@ const createAnimal = async (animal) => {
   const conn = await connect();
   try {
     const sql =
-      "INSERT INTO animals (nome, tipo, proprietario_id) VALUES ($1, $2) RETURNING *";
+      "INSERT INTO animais (nome, tipo, proprietario_id) VALUES ($1, $2) RETURNING *";
     const values = [
       animal.nome,
       animal.tipo,
@@ -24,7 +24,7 @@ const createAnimal = async (animal) => {
 const getAnimals = async () => {
   const conn = await connect();
   try{
-    const sql = "SELECT * FROM animals"
+    const sql = "SELECT * FROM animais"
     const res = await conn.query(sql);
     return res.rows;
 
@@ -39,7 +39,7 @@ const getAnimal = async (id) => {
   const conn = await connect();
   try{
     
-    const res = await conn.query("SELECT * FROM animals where animal_id = $1", [id]);
+    const res = await conn.query("SELECT * FROM animais where animal_id = $1", [id]);
     return res.rows[0];
   }catch(error){
     throw error
@@ -51,7 +51,7 @@ const getAnimal = async (id) => {
 const checkId = async (id) => {
   const conn = await connect();
   try{
-    const res = await conn.query("SELECT animal_id FROM animals where animal_id = $1", [id]);
+    const res = await conn.query("SELECT animal_id FROM animais WHERE animal_id = $1", [id]);
     if(!res.rows[0])throw new Error("animal_id inválido");
   }catch(error){
     throw error
@@ -64,7 +64,7 @@ const updateAnimal = async (animal) => {
   const conn = await connect();
   try{
     const sql =
-      "UPDATE animals SET nome = $1, tipo = $2 WHERE animal_id = $3 RETURNING *";
+      "UPDATE animais SET nome = $1, tipo = $2 WHERE animal_id = $3 RETURNING *";
     const values = [
       animal.nome,
       animal.tipo,
@@ -82,7 +82,7 @@ const updateAnimal = async (animal) => {
 const deleteAnimal = async (id) => {
   const conn = await connect();
   try{
-    const res = await conn.query("DELETE FROM animals WHERE animal_id = $1 RETURNING *", [id])
+    const res = await conn.query("DELETE FROM animais WHERE animal_id = $1 RETURNING *", [id])
     return res.rows[0];
   }catch(error){
     throw error
