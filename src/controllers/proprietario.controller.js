@@ -51,9 +51,19 @@ const updateProprietario = async (req, res, next) => {
   }
 }
 
+const deleteProprietario = async (req, res, next) => {
+  try{
+    const id = req.params.id
+    res.send(await proprietarioService.deleteProprietario(id))
+  }catch(error){
+    next(error)
+  }
+}
+
 export default {
   createProprietario,
   getProprietarios,
   getProprietario,
-  updateProprietario
+  updateProprietario,
+  deleteProprietario
 }

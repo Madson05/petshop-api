@@ -81,7 +81,8 @@ const updateProprietario = async (proprietario) => {
 const deleteProprietario = async (id) => {
   const conn = await connect();
   try{
-
+    const res = await conn.query("DELETE FROM proprietarios WHERE proprietario_id = $1 RETURNING *", [id])
+    return res.rows[0];
   }catch(error){
     throw error
   }finally{

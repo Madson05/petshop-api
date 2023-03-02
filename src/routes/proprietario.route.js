@@ -7,5 +7,6 @@ router.post("/", proprietarioController.createProprietario);
 router.get("/", proprietarioController.getProprietarios);
 router.get("/:id", proprietarioController.getProprietario);
 router.put("/", proprietarioController.updateProprietario);
+router.delete("/:id", proprietarioController.deleteProprietario);
 
 export default router;
