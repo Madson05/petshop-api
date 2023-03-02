@@ -4,14 +4,15 @@ const createAnimal = async (animal) => {
   await proprietarioRepository.checkId(animal.proprietario_id);
   return await animalRepository.createAnimal(animal);
 };
-const getAnimals = async () => {
+
+const getAnimals = async (id) => {
+  if(id){
+    await proprietarioRepository.checkId(id)
+    return await animalRepository.getAnimals(id);
+  }
   return await animalRepository.getAnimals();
 };
 
-const getAnimalsByProp = async (id) => {
-  await proprietarioRepository.checkId(id);
-  return await animalRepository.getAnimalsByProp(id);
-};
 
 const getAnimal = async (id) => {
   await animalRepository.checkId(id);
@@ -30,7 +31,6 @@ const deleteAnimal = async (id) => {
 export default {
   createAnimal,
   getAnimals,
-  getAnimalsByProp,
   getAnimal,
   updateAnimal,
   deleteAnimal,

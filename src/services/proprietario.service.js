@@ -1,4 +1,5 @@
 import proprietarioRepository from "../repositories/proprietario.repository.js"
+import animalRepository from "../repositories/animal.repository.js";
 const createProprietario = async (proprietario) => {
   return await proprietarioRepository.createProprietario(proprietario);
 }
@@ -16,7 +17,11 @@ const updateProprietario = async (proprietario) => {
 }
 const deleteProprietario = async (id) => {
   await proprietarioRepository.checkId(id)
-  return await proprietarioRepository.deleteProprietario(id)
+  const animals = await animalRepository.getAnimalsByProp(id)
+  if(!animals){
+    return await proprietarioRepository.deleteProprietario(id)
+  }throw new Error("O proprietario possui animais cadastrados. remova-os primeiro")
+  
 }
 
 export default {

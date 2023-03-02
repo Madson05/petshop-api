@@ -22,19 +22,17 @@ const createAnimal = async (req, res, next) => {
 
 const getAnimals = async (req, res, next) => {
   try {
-    res.send(await animalService.getAnimals());
+    const id = req.query.proprietario_id;
+    if(id){
+      res.send(await animalService.getAnimals(id));
+    }else{
+      res.send(await animalService.getAnimals());
+    }
   } catch (error) {
     next(error);
   }
 };
-const getAnimalsByProp = async (req, res, next) => {
-  try {
-    const id = req.params.proprietario_id;
-    res.send(await animalService.getAnimalsByProp(id));
-  } catch (error) {
-    next(error);
-  }
-};
+
 
 const getAnimal = async (req, res, next) => {
   try {
@@ -76,7 +74,7 @@ const deleteAnimal = async (req, res, next) => {
 export default {
   createAnimal,
   getAnimals,
-  getAnimalsByProp,
+
   getAnimal,
   updateAnimal,
   deleteAnimal,
