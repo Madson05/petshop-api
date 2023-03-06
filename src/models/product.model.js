@@ -1,8 +1,9 @@
 import Sequelize from "sequelize";
 import db from "../data/db.js"
+import Supplier from "./supplier.model.js";
 
-const Supplier = db.define("suppliers", {
-  supplierId: {
+const Product = db.define("products", {
+  productId: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
@@ -11,24 +12,22 @@ const Supplier = db.define("suppliers", {
   name: {
     type: Sequelize.STRING,
     allowNull: false
-
   },
-  cnpj: {
+  description: {
     type: Sequelize.STRING,
     allowNull: false
   },
-  phone: {
-    type: Sequelize.STRING,
+  value: {
+    type: Sequelize.DOUBLE,
     allowNull: false
   },
-  email: {
-    type: Sequelize.STRING,
+  stock: {
+    type: Sequelize.INTEGER,
     allowNull: false
   },
-  address: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
+  
 }, {underscored: true});
 
-export default Supplier
+Product.belongsTo(Supplier, {foreignKey: "supplierId"})
+
+export default Product
