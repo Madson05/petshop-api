@@ -1,8 +1,8 @@
 import Sequelize from "sequelize";
 import db from "../data/db.js"
 
-const Client = db.define("clients", {
-  clientId: {
+const Supplier = db.define("suppliers", {
+  supplierId: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
@@ -13,7 +13,7 @@ const Client = db.define("clients", {
     allowNull: false
 
   },
-  cpf: {
+  cnpj: {
     type: Sequelize.STRING,
     allowNull: false
   },
