@@ -1,5 +1,6 @@
 import pg from "pg";
 import dotenv from "dotenv";
+import  Sequelize from "sequelize";
 
 dotenv.config();
 
@@ -16,3 +17,14 @@ export const connect = async () => {
 
   return pool.connect();
 };
+
+const sequelize = new Sequelize(
+  process.env.DB_URL, 
+  {
+    dialect: "postgres",
+    define: {
+      timestamps: false
+    }
+  })
+
+  export default sequelize;
